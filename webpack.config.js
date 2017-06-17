@@ -53,6 +53,13 @@ module.exports = {
                 test: /\.css$/,
                 include: path.resolve('src', 'app'),
                 loader: 'raw-loader'
+            },
+            {
+                test: /\.pug$/,
+                loader: 'pug-loader',
+                options: {
+                    pretty: true
+                }
             }
         ]
     },
@@ -62,7 +69,7 @@ module.exports = {
         }),
 
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            template: PATHS.source + '/index.pug'
         }),
 
         new ExtractTextPlugin('[name].[hash].css'),
