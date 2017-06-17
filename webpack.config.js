@@ -13,6 +13,11 @@ const PATHS = {
 
 // configuration
 module.exports = {
+    devServer: {
+        host: 'localhost',
+        port: 4200
+    },
+
     entry: {
         'polyfills': PATHS.source + '/polyfills.ts',
         'vendor': PATHS.source + '/vendor.ts',
