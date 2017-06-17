@@ -16,7 +16,8 @@ module.exports = {
     entry: {
         'polyfills': PATHS.source + '/polyfills.ts',
         'vendor': PATHS.source + '/vendor.ts',
-        'app': PATHS.app + '/main.ts'
+        'app': PATHS.app + '/main.ts',
+        'blog': PATHS.app + '/blog/blog.js'
     },
     output: {
         path: PATHS.build,
@@ -56,10 +57,10 @@ module.exports = {
             },
             {
                 test: /\.pug$/,
-                loader: 'pug-loader',
-                options: {
+                loader: 'pug-loader'
+                /*options: {
                     pretty: true
-                }
+                }*/
             }
         ]
     },
@@ -69,7 +70,15 @@ module.exports = {
         }),
 
         new HtmlWebpackPlugin({
-            template: PATHS.source + '/index.pug'
+            template: PATHS.source + '/index.pug',
+            filename: 'index.html',
+            chunks: ['app', 'vendor', 'polyfills']
+        }),
+
+        new HtmlWebpackPlugin({
+            template: PATHS.app + '/blog/blog.pug',
+            filename: 'blog.html',
+            chunks: ['blog']
         }),
 
         new ExtractTextPlugin('[name].[hash].css'),
